@@ -1,0 +1,21 @@
+{
+  "target": "yield",
+  "features": [
+    "year",
+    "tmax_mean_c",
+    "tmin_mean_c",
+    "rain_total_mm",
+    "vapour_pressure_hpa",
+    "cloud_mean_okta",
+    "wet_days",
+    "district"
+  ],
+  "climate_source": "CRU TS crop-season climate",
+  "train_period": "1984-2015",
+  "test_period": "2016-2023",
+  "models": [
+    "Random Forest Regressor",
+    "XGBoost Regressor"
+  ],
+  "random_state": 42
+}
