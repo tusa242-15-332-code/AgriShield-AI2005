@@ -3003,11 +3003,26 @@ function SatelliteNdviModule({ district, activeFarm }) {
   );
 }
 
+const getApiBase = () => {
+  const envUrl = import.meta.env.VITE_API_BASE_URL;
+  if (envUrl && typeof envUrl === 'string' && envUrl.trim() !== '') {
+    return envUrl.trim().replace(/\/+$/, '');
+  }
+  if (typeof window !== 'undefined') {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://localhost:8000';
+    }
+    return '';
+  }
+  return '';
+};
+
 // ============================================================================
 // MODULE 9B: SYSTEM ADMINISTRATION & API HEALTH PANEL
 // ============================================================================
 function AdminPanelModule({ products, setProducts, orders, farms, triggerToast }) {
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+  const API_BASE = getApiBase();
   const [yieldApiHealth, setYieldApiHealth] = useState(null);
   useEffect(() => {
     fetch(`${API_BASE}/health`).then((r) => r.ok ? r.json() : Promise.reject()).then(setYieldApiHealth).catch(() => setYieldApiHealth({ status: 'offline', loaded_models: [] }));
@@ -3075,7 +3090,7 @@ function AdminPanelModule({ products, setProducts, orders, farms, triggerToast }
 // MODULE: AI CROP YIELD PREDICTION (TRAINED XGBOOST MODELS VIA FASTAPI)
 // ============================================================================
 function YieldPredictionModule({ defaultDistrict }) {
-  const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+  const API_BASE = getApiBase();
   const [meta, setMeta] = useState({ crops: [], districts: [] });
   const [crop, setCrop] = useState('Boro');
   const [district, setDistrict] = useState(defaultDistrict || 'Gazipur');
