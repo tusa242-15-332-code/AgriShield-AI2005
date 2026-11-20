@@ -5,7 +5,7 @@ echo "[1/5] Pulling latest code from origin/main..."
 cd /var/www/maxshield
 git config --global --add safe.directory /var/www/maxshield
 git fetch origin main
-git reset --hard origin/main
+git reset --hard FETCH_HEAD
 
 echo "[2/5] Updating Python backend dependencies..."
 /var/www/maxshield/backend/.venv/bin/pip install -q -r /var/www/maxshield/backend/requirements.txt
