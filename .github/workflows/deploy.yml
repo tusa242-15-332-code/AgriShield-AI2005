@@ -49,4 +49,4 @@ jobs:
           username: ${{ secrets.VPS_USERNAME }}
           key: ${{ secrets.VPS_SSH_KEY }}
           port: 22
-          script: /var/www/maxshield/deploy.sh
+          script: bash /var/www/maxshield/deploy.sh
