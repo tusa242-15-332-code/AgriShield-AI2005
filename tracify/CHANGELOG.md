@@ -6,6 +6,15 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [1.1.0] — 2026-11-20
+
+### Added
+- **Production VPS Deployment:** Live at `/var/www/maxshield` on Ubuntu 24.04 with systemd daemon management (`maxshield-backend.service`).
+- **Domain & SSL:** Live under custom domain `https://agrishield.solocraftstudios.tech` and `https://www.agrishield.solocraftstudios.tech` with automated Let's Encrypt SSL/TLS certificates and HTTP->HTTPS redirection.
+- **Automated CI/CD:** GitHub Actions pipeline (`.github/workflows/deploy.yml`) with automated backend pytest validation, React Vite production build checks, and SSH deployment hook.
+
+---
+
 ## [1.0.0] — 2026-11-20
 
 ### Added
